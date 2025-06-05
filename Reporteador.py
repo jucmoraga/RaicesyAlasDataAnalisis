@@ -1,25 +1,7 @@
-import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
+from preguntas import Preguntas, dar_texto
 
 
 def reporte_anexos(df):
-    # Crear la gráfica
-    # plt.bar(df['Nombre'], df['Edad'])
-    # plt.title('Edades de las Personas')
-    # plt.xlabel('Nombre')
-    # plt.ylabel('Edad')
-
-    # # Guardar la gráfica en un buffer en memoria
-    # buffer = BytesIO()
-    # plt.savefig(buffer, format='png')
-    # plt.close()
-    # buffer.seek(0)
-
-    # # Codificar la imagen en base64 para insertarla en HTML
-    # imagen_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-    # img_html = f'<img src="data:image/png;base64,{imagen_base64}" alt="Gráfica de Edades"/>'
-
     # Generar la tabla HTML
     tabla_html = df.to_html(index=False)
 
@@ -38,3 +20,28 @@ def reporte_anexos(df):
 
     with open('reporte_anexos.html', 'w', encoding='utf-8') as f:
         f.write(reporte_html)
+
+def reporte_resultados(resultados):
+    reporte_html = f"""
+    <html>
+    <head><title>Reporte Resultados PRYA.</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+        <div style="text-align: center;">
+        <h1 style='color: MidnightBlue;'>Universidad Pedagógica Nacional</h1>
+        <h2>Proyecto Raices y Alas. Reporte de resultados</h2>
+        <h3>Sección 2: Preguntas de tipo SI/NO</h3>
+        """
+    for resultado in resultados:
+        reporte_html += f"""
+        <img>{resultado["grafica"]}</img>
+        """
+    
+    reporte_html += """
+        </div>
+    </body>
+    </html>
+    """
+
+    with open('reporte_resultados.html', 'w', encoding='utf-8') as f:
+        f.write(reporte_html)    
