@@ -1,4 +1,4 @@
-from resultados import Preguntas, dar_texto
+from resultados import Preguntas
 
 
 def reporte_anexos(df):
@@ -24,6 +24,9 @@ def reporte_anexos(df):
 def reporte_resultados(resultados):
 
     resultados_seccion2 = [resultado for resultado in resultados if resultado["seccion"] == 2]
+    resultados_seccion3 = [resultado for resultado in resultados if resultado["seccion"] == 3]
+    resultados_seccion4 = [resultado for resultado in resultados if resultado["seccion"] == 4]
+    resultados_seccion5 = [resultado for resultado in resultados if resultado["seccion"] == 5]
 
     reporte_html = f"""
     <html>
@@ -44,6 +47,21 @@ def reporte_resultados(resultados):
         <h3>Sección 3: Preguntas de múltiple opción con única respuesta</h3>
         """
     
+    for resultado in resultados_seccion3:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """
+
+    reporte_html += """
+        <h3>Sección 4: Preguntas de enumeración de preferencia del 1 al 5</h3>
+        <p>Siendo 5 el máximo nivel de preferencia y 1 el mínimo.</p>
+        """
+
+    for resultado in resultados_seccion4:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """
+
     reporte_html += """
         </div>
     </body>

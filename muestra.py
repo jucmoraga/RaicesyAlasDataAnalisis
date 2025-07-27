@@ -30,11 +30,9 @@ class Muestra():
         self.data= pd.DataFrame()
 
     def generar_datos_aleatorios(self):
-        for i in range(500):
+        for i in range(20):
             encuestado = Encuestado()
             datos = encuestado.data
             self.data = pd.concat([self.data, datos], ignore_index=True)
 
-    def prueba(self):
-        print(self.data)
 
