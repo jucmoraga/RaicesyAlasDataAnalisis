@@ -347,69 +347,264 @@ Preguntas = [
                      "Textos propios de tu área.",
                      "Otros"]
     },
-    # {
-    #     id: 48,
-    #     "seccion": 4,
-    #     "abr": "s4-p2",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 49,
-    #     "seccion": 4,
-    #     "abr": "s4-p3",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 50,
-    #     "seccion": 4,
-    #     "abr": "s4-p4",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 51,
-    #     "seccion": 4,
-    #     "abr": "s4-p5",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 52,
-    #     "seccion": 4,
-    #     "abr": "s4-p6",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 53,
-    #     "seccion": 4,
-    #     "abr": "s4-p7",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 54,
-    #     "seccion": 4,
-    #     "abr": "s4-p8",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    # {
-    #     id: 55,
-    #     "seccion": 4,
-    #     "abr": "s4-p9",
-    #     "texto": "",
-    #     "opciones": []
-    # },
-    #     {
-    #     id: 56,
-    #     "seccion": 4,
-    #     "abr": "s4-p10",
-    #     "texto": "",
-    #     "opciones": []
-    # },
+    {
+        id: 48,
+        "seccion": 4,
+        "abr": "s4-p2",
+        "texto": "De los siguientes temas, enumera de 1 a 5 según tu interés de lectura",
+        "opciones": ["Temas pedagógicos (para el ejercicio de la docencia).",
+                     "Temas epistemológicos y teóricos (para el desarrollo de la disciplina y la investigación).",
+                     "Temas tecnológicos (para el uso y desarrollo de tecnologías).",
+                     "Temas de entretenimiento y fruición (lectura por placer, no obligatoria).",
+                     "Temas de política y actualidad, coyuntura de país.",
+                     "Temas (auto)biográficos.",
+                     "Temas de autoayuda y espiritualidad.",
+                     "Otro"]
+    },
+    {
+        id: 49,
+        "seccion": 4,
+        "abr": "s4-p3",
+        "texto": "En las dos últimas semanas previas a esta encuesta, enumera las lecturas que con más frecuencia hiciste",
+        "opciones": ["Leí literatura.",
+                     "Leí sobre mi disciplina y campo profesional.",
+                     "Leí sobre ciencia y divulgación.",
+                     "Leí tips y consejos prácticos sobre un tema particular.",
+                     "Leí autoayuda.",
+                     "Leí opiniones sobre temas de actualidad.",
+                     "Leí noticias.",
+                     "Leí reseñas culturales de música, cine, teatro o literatura.",
+                     "Otro"]
+    },
+    {
+        id: 50,
+        "seccion": 4,
+        "abr": "s4-p4",
+        "texto": "En las dos últimas semanas previas a esta encuesta, enumera las escrituras que con más frecuencia hiciste",
+        "opciones": ["Escribí textos para un periódico.",
+                     "Escribí textos para una revista.",
+                     "Escribí en un blog personal.",
+                     "Escribí en un foro de discusión.",
+                     "Escribí publicaciones en redes sociales.",
+                     "Escribí mensajes de chat.",
+                     "Escribí textos de trabajo académico solicitados.",
+                     "Escribí notas en mi diario.",
+                     "Escribí textos literarios.",
+                     "Otro"]
+    },
+    {
+        id: 51,
+        "seccion": 4,
+        "abr": "s4-p5",
+        "texto": "¿Cuáles son tus géneros literarios favoritos?",
+        "opciones": ["Poesía","Teatro", "Ensayo", "Novelas o cuentos de misterio y terror",
+                     "Novelas o cuentos de dramas y romances.","Novelas o cuentos de aventuras.",
+                     "Novelas o cuentos de ciencia ficción.",
+                     "Novelas o cuentos realistas.","Novelas o cuentos policiacos.",
+                     "Novelas históricas.", "Novelas testimonio.",
+                     "Libros-álbum.", "Ninguno","Otro"]
+    },
+    {
+        id: 52,
+        "seccion": 4,
+        "abr": "s4-p6",
+        "texto": "Cuando usas el internet, lo haces principalmente para",
+        "opciones": ["Ver películas, series y/o documentales.",
+                     "Leer artículos de mi área profesional.",
+                     "Leer y acceder a libros de mi área profesional.",
+                     "Leer noticias y temas de actualidad.",
+                     "Acceder a videoconferencias (clases, seminarios, talleres).",
+                     "Ver fotografías o imágenes.",
+                     "Escuchar música.",
+                     "Visitar museos o bibliotecas virtuales.",
+                     "Comunicarme e interactuar con otros en redes sociales.",
+                     "Escuchar podcast.",
+                     "Escuchar programas de radio.",
+                     "Jugar en línea.",
+                     "Otro"]
+    },
+    {
+        id: 53,
+        "seccion": 4,
+        "abr": "s4-p7",
+        "texto": "¿Para cuáles de las siguientes actividades lees con mayor frecuencia en la UPN?",
+        "opciones": ["Para las asignaturas de mi carrera.",
+                     "Para mi Club, grupo o círculo de lectura.",
+                     "Para mi trabajo en un semillero de investigación.",
+                     "Para mi grupo de estudio.",
+                     "Para realizar exposiciones en las asignaturas.",
+                     "Para un curso extracurricular.",
+                     "Para participar en eventos académicos (congreso, seminario, coloquio, simposio, etc.).",
+                     "Para desarrollar mi proyecto de grado.",
+                     "Otro"]
+    },
+    {
+        id: 54,
+        "seccion": 4,
+        "abr": "s4-p8",
+        "texto": "¿Para cuáles de las siguientes actividades escribes con mayor frecuencia? ",
+        "opciones": ["Para las asignaturas de mi carrera.",
+                     "Para mi Club, grupo o círculo de lectura.",
+                     "Para mi trabajo en un semillero de investigación.",
+                     "Para mi grupo de estudio.",
+                     "Para realizar exposiciones en las asignaturas.",
+                     "Para un curso extracurricular.",
+                     "Para participar en eventos académicos (congreso, seminario, coloquio, simposio, etc.).",
+                     "Para desarrollar mi proyecto de grado.",
+                     "Otro"]
+    },
+    {
+        id: 55,
+        "seccion": 4,
+        "abr": "s4-p9",
+        "texto": "Los documentos que más leíste en el semestre pasado, para responder a tus compromisos académicos fueron",
+        "opciones": ["Materiales elaborados por los docentes (talleres, guías, artículos).",
+                     "Apuntes de clase propios.",
+                     "Apuntes de clase de otro (s) compañero (s).",
+                     "Resúmenes de libros o de artículos.",
+                     "Artículos académicos y científicos.",
+                     "Informes de investigación.",
+                     "Libros de consulta general (enciclopedias y diccionarios).",
+                     "Libros o capítulo de libros, propios de la carrera.",
+                     "Literatura (Novelas, cuentos, poesía).",
+                     "Blogs especializados en tu área.",
+                     "Otro"]
+    },
+        {
+        id: 56,
+        "seccion": 4,
+        "abr": "s4-p10",
+        "texto": "Los tipos de documentos que más escribiste, el semestre pasado, para responder a tus compromisos académicos fueron: ",
+        "opciones": ["Apuntes de clase.",
+                     "Resúmenes.",
+                     "Artículos.",
+                     "Informes.",
+                     "Ensayos.",
+                     "Reseñas.",
+                     "Relatorías.",
+                     "Memorias, protocolos, actas, diarios.",
+                     "Textos literarios (Novelas, cuentos, poesía).",
+                     "Comentarios o aportes para foros o grupos de discusión presenciales o en línea.",
+                     "Otro"]
+    },
+    {
+        id: 57,
+        "seccion": 4,
+        "abr": "s4-p11",
+        "texto": "Cuando escribes textos académicos ¿para qué te apoyas en la IAG? ",
+        "opciones": ["Generar textos.",
+                     "Generar imágenes.",
+                     "Sintetizar o resumir textos.",
+                     "Generar presentaciones gráficas, mapas conceptuales, infografías, etc.",
+                     "Gestionar información: buscar y contrastar información.",
+                     "Apoyar la redacción de textos: indagar sobre el tema que se va a trabajar, pedir ideas, organizar el texto.",
+                     "Hacer corrección de estilo (ortografía, gramática, coherencia, cohesión).",
+                     "Pasar la bibliografía a normas APA.",
+                     "Hacer traducciones de un idioma a otro.",
+                     "Proporcionar retroalimentación.",
+                     "Mejorar un texto elaborado por mí.",
+                     "Otras"]
+    }, 
+    {
+        id: 58,
+        "seccion": 4,
+        "abr": "s4-p12",
+        "texto": "¿Cuáles son los usos más frecuentes que le das a la IAG para tus actividades, en general? ",
+        "opciones": ["Resolver preguntas.",
+                     "Pedir recomendaciones de libros.",
+                     "Redactar de cartas, correos y otros documentos personales.",
+                     "Redactar documentos jurídicos como derechos de petición, tutelas, etc.",
+                     "Crear personajes e historias ficticias.",
+                     "Generar de imágenes.",
+                     "Conversar sobre asuntos personales.",
+                     "Apoyarse para realizar trabajos académicos.",
+                     "Apoyarse para resolver tareas laborales.",
+                     "Apoyarse para realizar planeaciones, materiales didácticos, etc.",
+                     "Realizar contenido audiovisual.",
+                     "Otra"]
+    },
+    {
+         id: 59,
+        "seccion": 5,
+        "abr": "s5-p1",
+        "texto": "De las siguientes IAG cuáles conoces y utilizas para apoyar la lectura de textos.",
+        "opciones": ["Chat GPT",
+                     "Copilot",
+                     "Bing",
+                     "Claude",
+                     "Bard",
+                     "Gemini",
+                     "Cpoy.ai",
+                     "Texta",
+                     "ChatSonic",
+                     "Writier",
+                     "Writerly",
+                     "Perplexity"]       
+    },
+    {
+         id: 60,
+        "seccion": 5,
+        "abr": "s5-p2",
+        "texto": "De las siguientes IAG ¿cuáles conoces y utilizas para apoyar la escritura?",
+        "opciones": ["DeepL Write",
+                     "Ludwig",
+                     "Grammarly",
+                     "QuillBot",
+                     "Trinka",
+                     "Microsoft editor",
+                     "Otra"]       
+    },
+    {
+         id: 61,
+        "seccion": 5,
+        "abr": "s5-p3",
+        "texto": "¿De qué manera has aprendido a utilizar la inteligencia artificial?",
+        "opciones": ["Por exploración personal.",
+                     "Por instrucción de un maestro.",
+                     "Por sugerencias de amigos y compañeros.",
+                     "Por redes sociales.",
+                     "A través de cursos.",
+                     "No sé utilizar la IAG."]       
+    },
+    {
+         id: 62,
+        "seccion": 5,
+        "abr": "s5-p4",
+        "texto": "Cuando lees textos académicos te apoyas en la IAG para:",
+        "opciones": ["Buscar más información sobre el tema a tratar.",
+                     "Comprender o esclarecer algunos conceptos del texto.",
+                     "Indagar sobre términos desconocidos.",
+                     "Buscar explicaciones sobre temas complejos.",
+                     "Resumir.",
+                     "Identificar las ideas principales y secundarias.",
+                     "Otra"]       
+    },
+    {
+         id: 63,
+        "seccion": 5,
+        "abr": "s5-p5",
+        "texto": "¿En qué otros idiomas, diferentes al español, leíste textos el semestre pasado?",
+        "opciones": ["Inglés ",
+                     "Francés ",
+                     "Portugués",
+                     "Alemán",
+                     "Italiano",
+                     "Solo leí en español",
+                     "Otro idioma"]       
+    },
+    {
+         id: 64,
+        "seccion": 5,
+        "abr": "s5-p6",
+        "texto": "¿En qué otros idiomas, diferentes al español, escribiste textos el semestre pasado?",
+        "opciones": ["Inglés ",
+                     "Francés ",
+                     "Portugués",
+                     "Alemán",
+                     "Italiano",
+                     "Solo leí en español",
+                     "Otro idioma"]             
+    }
 ]
 
 def dar_abrs():
@@ -432,6 +627,10 @@ def respuestas_aleatorias():
             respuesta = np.random.choice(pregunta["opciones"])
         elif pregunta["seccion"] == 4:
             respuesta = np.random.choice(pregunta["opciones"], size=5, replace=False).tolist()
+        elif pregunta["seccion"] == 5:
+            numero_opciones = len(pregunta["opciones"])
+            numero_elegidas = np.random.randint(1, numero_opciones + 1)
+            respuesta = np.random.choice(pregunta["opciones"], size=numero_elegidas, replace=False).tolist()
         respuestas.append(respuesta)
 
     return pd.DataFrame([respuestas], columns=dar_abrs())

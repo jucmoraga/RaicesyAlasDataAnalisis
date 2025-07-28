@@ -12,6 +12,7 @@ def main():
     print("Generando reporte de resultados...")
     reporte_resultados(resultados)
     reporte_anexos(muestra.data)
+    print("Proceso finalizado")
 
 
 if __name__ == "__main__":

@@ -61,6 +61,15 @@ def reporte_resultados(resultados):
         reporte_html += f"""
         <img style="display: block;">{resultado["grafica"]}</img>
         """
+    
+    reporte_html += """
+        <h3>Sección 5: Preguntas con opciones multiples de respuesta</h3>
+        """
+
+    for resultado in resultados_seccion5:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """  
 
     reporte_html += """
         </div>
