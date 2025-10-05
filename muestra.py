@@ -1,38 +1,18 @@
 import pandas as pd
-import numpy as np
-from faker import Faker
-from resultados import respuestas_aleatorias
-
-class Encuestado:
-    def __init__(self):
-        fake = Faker()
-        generos = ['Masculino', 'Femenino']
-        facultades = ["FACULTAD DE EDUCACION","FACULTAD DE BELLAS ARTES","FACULTAD DE EDUCACION FISICA",
-                    "FACULTAD DE HUMANIDADES","FACULTAD DE CIENCIA Y TECNOLOGIA"]
-        sesgoGenero = [0.6, 0.4] 
-        genero = np.random.choice(generos, p=sesgoGenero)
-        if genero == 'Masculino':
-            nombre = fake.name_male()
-        else:
-            nombre = fake.name_female()
-        
-        facultad = np.random.choice(facultades)
-        semestre = np.random.randint(1, 11) 
-        
-        identificacion = pd.DataFrame(columns=["Nombre","Genero", "Facultad", "Semestre"],
-                                    data=[[nombre, genero, facultad, semestre]])
-        self.data = pd.concat([identificacion, respuestas_aleatorias()],axis=1)
-
-
+import math
 
 class Muestra():
     def __init__(self):
-        self.data= pd.DataFrame()
+        self.data= pd.read_csv('respuestas/resultados_041025.txt', delimiter=',')
+        self.resultados = []
+        self.informacion_poblacional = []
+        self.informacion_muestral = []
+        self.margen_error = self.calculo_margen()
 
-    def generar_datos_aleatorios(self):
-        for i in range(20):
-            encuestado = Encuestado()
-            datos = encuestado.data
-            self.data = pd.concat([self.data, datos], ignore_index=True)
-
-
+    def calculo_margen(self):
+        z = 1.96           # 95% de confianza
+        s = 0.25           # desviación muestral
+        n = self.data.shape[0]            # tamaño de la muestra
+        N = 8564          # tamaño de la población
+        margen_error = z * math.sqrt(s/n) * math.sqrt((N - n) / (N - 1))
+        return margen_error * 100

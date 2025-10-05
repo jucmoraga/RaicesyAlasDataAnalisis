@@ -1,17 +1,18 @@
-from muestra import Muestra
-from procesador import procesar_datos
+from procesador import procesar_datos, datos_poblacionales, datos_muestrales
 from reporteador import reporte_anexos, reporte_resultados
+from muestra import Muestra
 
 def main():
-    print("Creando la muestra...")
+    print("Leyendo respuestas...")
     muestra = Muestra()
-    muestra.generar_datos_aleatorios()
+    datos_poblacionales(muestra)
+    datos_muestrales(muestra)
     print("Procesando datos...")
     resultados = []
-    procesar_datos(muestra.data, resultados)
+    #procesar_datos(muestra.data, resultados)
     print("Generando reporte de resultados...")
-    reporte_resultados(resultados)
-    reporte_anexos(muestra.data)
+    reporte_resultados(muestra)
+    reporte_anexos(muestra)
     print("Proceso finalizado")
 
 

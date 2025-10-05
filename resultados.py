@@ -3,238 +3,238 @@ import numpy as np
 
 Preguntas = [
     {
-        id: 1,
+        "id": 1,
         "seccion": 2,
         "abr": "s2-p1",
         "texto": "¿Sueles leer afiches, murales, grafitis o anuncios en las paredes de la Universidad?",
         "opciones": ["Si","No"]
     },
     {
-        id: 2,
+        "id": 2,
         "seccion": 2,
         "abr": "s2-p2",
         "texto": "¿Asistes a la Biblioteca Central de la Universidad a hacer préstamos de libros?",
         "opciones": ["Si","No"]
     },
     {
-        id: 3,
+        "id": 3,
         "seccion": 2,
         "abr": "s2-p3",
         "texto": "¿Asistes a bibliotecas públicas para hacer préstamos de libros?",
         "opciones": ["Si","No"]
     },
     {
-        id: 4,
+        "id": 4,
         "seccion": 2,
         "abr": "s2-p4",
         "texto": "¿Asistes a bibliotecas comunitaria para hacer préstamos de libros?",
         "opciones": ["Si","No"]
     },
     {
-        id: 5,
+        "id": 5,
         "seccion": 2,
         "abr": "s2-p5",
         "texto": "¿Tienes una biblioteca personal o familiar en tu casa?",
         "opciones": ["Si","No"]
     },
     {
-        id: 6,
+        "id": 6,
         "seccion": 2,
         "abr": "s2-p6",
         "texto": "¿Cuando eras pequeño/a recuerdas que alguien te leyera? ",
         "opciones": ["Si","No"]
     },
     {
-        id: 7,
+        "id": 7,
         "seccion": 2,
         "abr": "s2-p7",
         "texto": "¿Te gusta leer literatura? (novela, cuentos, poesía, teatro)",
         "opciones": ["Si","No"]
     },
     {
-        id: 8,
+        "id": 8,
         "seccion": 2,
         "abr": "s2-p8",
         "texto": "¿Acostumbras a escribir textos personales? (diarios, notas, opiniones, blogs…)",
         "opciones": ["Si","No"]
     },
     {
-        id: 9,
+        "id": 9,
         "seccion": 2,
         "abr": "s2-p9",
         "texto": "¿Acostumbras a escribir textos literarios? (ej. Relatos, cuentos, historias, poemas, etc.)",
         "opciones": ["Si","No"]
     },
     {
-        id: 10,
+        "id": 10,
         "seccion": 2,
         "abr": "s2-p10",
         "texto": "¿Asistes a librerías de la ciudad para hacer compra de libros?",
         "opciones": ["Si","No"]
     },
     {
-        id: 11,
+        "id": 11,
         "seccion": 2,
         "abr": "s2-p11",
         "texto": "En este año ¿has asistido a alguna comunidad lectora? (club o círculo de lectura, grupo de estudio, grupos de investigación etc.)",
         "opciones": ["Si","No"]
     },
     {
-        id: 12,
+        "id": 12,
         "seccion": 2,
         "abr": "s2-p12",
         "texto": "En este año ¿Has leído en voz alta a alguna persona o grupo?",
         "opciones": ["Si","No"]
     },
     {
-        id: 13,
+        "id": 13,
         "seccion": 2,
         "abr": "s2-p13",
         "texto": "En este año ¿Has leído un libro de literatura (novela, cuentos poesía) completo?",
         "opciones": ["Si","No"]
     },
     {
-        id: 14,
+        "id": 14,
         "seccion": 2,
         "abr": "s2-p14",
         "texto": "En este año ¿has leído algún libro completo de teoría o desarrollo de tu campo disciplinar?",
         "opciones": ["Si","No"]
     },
     {
-        id: 15,
+        "id": 15,
         "seccion": 2,
         "abr": "s2-p15",
         "texto": "¿Utilizas alguna red social para compartir tus opiniones de lo que lees o enterarte de novedades de lectura?",
         "opciones": ["Si","No"]
     },
     {
-        id: 16,
+        "id": 16,
         "seccion": 2,
         "abr": "s2-p16",
         "texto": "¿Consideras que tus prácticas de lectura y escritura cambiaron después de la pandemia Covid19?",
         "opciones": ["Si","No"]
     },
     {
-        id: 17,
+        "id": 17,
         "seccion": 2,
         "abr": "s2-p17",
         "texto": "¿Consideras que tus hábitos de lectura y escritura mejoraron al ingresar a la Universidad?",
         "opciones": ["Si","No"]
     },
     {
-        id: 18,
+        "id": 18,
         "seccion": 2,
         "abr": "s2-p18",
         "texto": "¿Haces uso de la Inteligencia Artificial Generativa (de ahora en adelante IAG) (Chat GPT, Deep seek, etc.) en tus actividades académicas?",
         "opciones": ["Si","No"]
     },
     {
-        id: 19,
+        "id": 19,
         "seccion": 2,
         "abr": "s2-p19",
         "texto": "¿Utilizas la IAG para apoyar la escritura de trabajos académicos asignados?",
         "opciones": ["Si","No"]
     },
     {
-        id: 20,
+        "id": 20,
         "seccion": 2,
         "abr": "s2-p20",
         "texto": "¿Te apoyas en la IAG (Chat GPT, Deep seek, etc.) para comprender textos académicos asignados?",
         "opciones": ["Si","No"]
     },
     {
-        id: 21,
+        "id": 21,
         "seccion": 2,
         "abr": "s2-p21",
         "texto": "¿Consideras que el uso de la IAG afecta negativamente tu proceso de lectura y escritura?",
         "opciones": ["Si","No"]
     },
     {
-        id: 22,
+        "id": 22,
         "seccion": 3,
         "abr": "s3-p1",
         "texto": "¿Qué tanto te gusta leer?",
         "opciones": ["Nada","Poco","Medianamente","Mucho"]
     },
     {
-        id: 23,
+        "id": 23,
         "seccion": 3,
         "abr": "s3-p2",
         "texto": "En qué tipo de soporte sueles leer con más frecuencia.",
         "opciones": ["Dispositivos electrónicos (pantallas).","Medios impresos (papel)"]	
     },
     {
-        id: 24,
+        "id": 24,
         "seccion": 3,
         "abr": "s3-p3",
         "texto": "¿Qué tanto te gusta escribir?",
         "opciones": ["Nada","Poco","Medianamente","Mucho"]
     },
     {
-        id: 25,
+        "id": 25,
         "seccion": 3,
         "abr": "s3-p4",
         "texto": "En qué tipo de soporte sueles escribir con más frecuencia.",
         "opciones": ["Dispositivos electrónicos (pantallas).","Medios impresos (papel)"]
     },
     {
-        id: 26,
+        "id": 26,
         "seccion": 3,
         "abr": "s3-p5",
         "texto": "Cuándo lees en pantalla, ¿cuál es el principal dispositivo que usas?",
         "opciones": ["Computadora de escritorio", "Computadora portátil/Laptop", "Tableta","Kindle o similar", "Smartphone", "Otro"] 
     },
     {
-        id: 27,
+        "id": 27,
         "seccion": 3,
         "abr": "s3-p6",
         "texto": "Cuando escribes textos de manera autónoma o personal lo haces de manera más frecuente en: ",
         "opciones": ["En un cuaderno", "En un archivo de Word", "En notas del teléfono", "En WhatsApp", "En un blog propio", "En Facebook","En Twitter o similar", "En Instagram", "Otra"]
     },
     {
-        id: 28,
+        "id": 28,
         "seccion": 3,
         "abr": "s3-p7",
         "texto": "Cuando escribes textos solicitados por tus profesores, lo haces de manera más frecuente en: ",
         "opciones": ["En un cuaderno", "En un archivo de Word", "En una plataforma académica", "En notas del teléfono", "En WhatsApp", "Otra"]
     },
     {
-        id: 29,
+        "id": 29,
         "seccion": 3,
         "abr": "s3-p8",
         "texto": "Consideras que después de la pandemia Covid-19",
         "opciones": ["Lees más", "Lees menos", "Lees igual que antes"]
     },
     {
-        id: 30,
+        "id": 30,
         "seccion": 3,
         "abr": "s3-p9",
         "texto": "¿Cuándo lees por tu cuenta y gusto de hacerlo, con qué frecuencia lo haces?",
         "opciones": ["Nunca","Casi nunca", "Una vez al mes", "Varias veces al mes", "Una vez por semana", "Varias veces por semana", "Diariamente"]
     },
     {
-        id: 31,
+        "id": 31,
         "seccion": 3,
         "abr": "s3-p10",
         "texto": "¿Cuándo escribes por tu cuenta y gusto de hacerlo, con qué frecuencia lo haces?",
         "opciones": ["Nunca","Casi nunca", "Una vez al mes", "Varias veces al mes", "Una vez por semana", "Varias veces por semana", "Diariamente"]
     },
     {
-        id: 32,
+        "id": 32,
         "seccion": 3,
         "abr": "s3-p11",
         "texto": "¿Tomas notas o resumes a partir de las lecturas que haces?",
         "opciones": ["Nunca", "Casi nunca", "Algunas veces", "Fecuentemente", "Siempre"]
     },
     {
-        id: 33,
+        "id": 33,
         "seccion": 3,
         "abr": "s3-p12",
         "texto": "Cuando escuchas hablar de lectoras, lectores, o de comunidad lectora (entendida como un grupo de personas que de manera autónoma y libre se reúnen a leer en tiempos y espacios compartidos), tu:",
         "opciones": ["Te sientes incluido como lector/a", "No te sientes incluido/a", "No sabes a qué se refieren"]
     },
     {
-        id: 34,
+        "id": 34,
         "seccion": 3,
         "abr": "s3-p13",
         "texto": "¿Cuánta afición y gusto por la lectura hay en tu familia?",
@@ -243,7 +243,7 @@ Preguntas = [
                      "La lectura no es una afición predominante en mi familia."]
     },
     {
-        id: 35,
+        "id": 35,
         "seccion": 3,
         "abr": "s3-p14",
         "texto": "¿Cuánta afición y gusto por la lectura hay en tu grupo de amigos/as o compañeras/os?",
@@ -252,56 +252,56 @@ Preguntas = [
                      "La lectura no es una afición predominante en mis grupos."]
     },
     {
-        id: 36,
+        "id": 36,
         "seccion": 3,
         "abr": "s3-p15",
         "texto": "Si te leyeron en la infancia ¿Quién que te leyó con mayor frecuencia?",
         "opciones": ["Mis maestras/os", "Mi mamá", "Mi papá", "Mis hermanos/as", "Otros familiares", "Amigos/as", "Naide"]
     },
     {
-        id: 37,
+        "id": 37,
         "seccion": 3,
         "abr": "s3-p16",
         "texto": "Qué personas consideras han influido de manera considerable en tus hábitos lectores.",
         "opciones": ["Mis profesoras/es", "Mi familia", "Mis amistades", "Mi novia/o", "Los bibliotecarios", "Booktuber/Bookstagrammer", "Ninguna, es iniciativa propia", "Otro"]
     },
     {
-        id: 38,
+        "id": 38,
         "seccion": 3,
         "abr": "s3-p17",
         "texto": "De las siguientes afirmaciones sobre el uso de plataformas de streaming (Netflix, Prime, etc.) señala con cuál te identificas más:",
         "opciones": ["Te impiden mejorar tu hábito lector.", "Cada día te hacen leer más y mejor", "No te influyen como lector o lectora"]
     },
     {
-        id: 39,
+        "id": 39,
         "seccion": 3,
         "abr": "s3-p18",
         "texto": "De las siguientes afirmaciones sobre el uso de redes sociales en general, señala con cuál te identificas más:",
         "opciones": ["Te impiden mejorar tu hábito lector.", "Cada día te hacen leer más y mejor", "No te influyen como lector o lectora"]
     },
     {
-        id: 40,
+        "id": 40,
         "seccion": 3,
         "abr": "s3-p19",
         "texto": "¿Te pasa que la lectura de un libro te provoca interés por una película, serie o exposición basada en ese libro o relacionada con este?",
         "opciones": ["Nunca","Casi nunca","Algunas veces","Frecuentemente","Siempre"]
     },
     {
-        id: 41,
+        "id": 41,
         "seccion": 3,
         "abr": "s3-p20",
         "texto": "¿Te pasa que una película o serie o exposición basada en un libro despierte tu interés por leer ese libro? ",
         "opciones": ["Nunca","Casi nunca","Algunas veces","Frecuentemente","Siempre"]
     },
     {
-        id: 42,
+        "id": 42,
         "seccion": 3,
         "abr": "s3-p21",
         "texto": "Cuando lees libros en físico por tu cuenta, ¿cómo los consigues generalmente?:",
         "opciones": ["Sueles pedirlos prestados en bibliotecas.","Sueles pedirlos prestados a los amigos.", "Suelen estar en la biblioteca personal.", "Suelen estar en la biblioteca familiar.", "Te los han regalado.","Haces trueques", "Los has obtenido en ferias del libro", "Otra"]
     },
     {
-        id: 43,
+        "id": 43,
         "seccion": 3,
         "abr": "s3-p22",
         "texto": "Cuando lees libros en digital por tu cuenta, ¿cómo los consigues generalmente?:",
@@ -311,28 +311,28 @@ Preguntas = [
                      "Otros"]
     },
     {
-        id: 44,
+        "id": 44,
         "seccion": 3,
         "abr": "s3-p23",
         "texto": "¿Qué tanto dependes de la IAG (Chat GPT, Deep Seek, etc.) para el desarrollo de tus actividades académicas?",
         "opciones": ["Nada","Poco","Medianamente","Mucho"]
     },
     {
-        id: 45,
+        "id": 45,
         "seccion": 3,
         "abr": "s3-p24",
         "texto": "¿Qué tan seguido acudes a la Biblioteca Central de la UPN para hacer préstamos de libros?",
         "opciones": ["Nunca","Casi nunca","Algunas veces","Frecuentemente","Siempre"]
     },
     {
-        id: 46,
+        "id": 46,
         "seccion": 3,
         "abr": "s3-p25",
         "texto": "Qué tan seguido acudes a Bibliotecas Públicas para hacer préstamos de libros?",
         "opciones": ["Nunca","Casi nunca","Algunas veces","Frecuentemente","Siempre"]
     },
     {
-        id: 47,
+        "id": 47,
         "seccion": 4,
         "abr": "s4-p1",
         "texto": "De los siguientes géneros textuales enumera de 1 a 5 según la frecuencia de lectura",
@@ -348,7 +348,7 @@ Preguntas = [
                      "Otros"]
     },
     {
-        id: 48,
+        "id": 48,
         "seccion": 4,
         "abr": "s4-p2",
         "texto": "De los siguientes temas, enumera de 1 a 5 según tu interés de lectura",
@@ -362,7 +362,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 49,
+        "id": 49,
         "seccion": 4,
         "abr": "s4-p3",
         "texto": "En las dos últimas semanas previas a esta encuesta, enumera las lecturas que con más frecuencia hiciste",
@@ -377,7 +377,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 50,
+        "id": 50,
         "seccion": 4,
         "abr": "s4-p4",
         "texto": "En las dos últimas semanas previas a esta encuesta, enumera las escrituras que con más frecuencia hiciste",
@@ -393,7 +393,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 51,
+        "id": 51,
         "seccion": 4,
         "abr": "s4-p5",
         "texto": "¿Cuáles son tus géneros literarios favoritos?",
@@ -405,7 +405,7 @@ Preguntas = [
                      "Libros-álbum.", "Ninguno","Otro"]
     },
     {
-        id: 52,
+        "id": 52,
         "seccion": 4,
         "abr": "s4-p6",
         "texto": "Cuando usas el internet, lo haces principalmente para",
@@ -424,7 +424,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 53,
+        "id": 53,
         "seccion": 4,
         "abr": "s4-p7",
         "texto": "¿Para cuáles de las siguientes actividades lees con mayor frecuencia en la UPN?",
@@ -439,7 +439,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 54,
+        "id": 54,
         "seccion": 4,
         "abr": "s4-p8",
         "texto": "¿Para cuáles de las siguientes actividades escribes con mayor frecuencia? ",
@@ -454,7 +454,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 55,
+        "id": 55,
         "seccion": 4,
         "abr": "s4-p9",
         "texto": "Los documentos que más leíste en el semestre pasado, para responder a tus compromisos académicos fueron",
@@ -471,7 +471,7 @@ Preguntas = [
                      "Otro"]
     },
         {
-        id: 56,
+        "id": 56,
         "seccion": 4,
         "abr": "s4-p10",
         "texto": "Los tipos de documentos que más escribiste, el semestre pasado, para responder a tus compromisos académicos fueron: ",
@@ -488,7 +488,7 @@ Preguntas = [
                      "Otro"]
     },
     {
-        id: 57,
+        "id": 57,
         "seccion": 4,
         "abr": "s4-p11",
         "texto": "Cuando escribes textos académicos ¿para qué te apoyas en la IAG? ",
@@ -506,7 +506,7 @@ Preguntas = [
                      "Otras"]
     }, 
     {
-        id: 58,
+        "id": 58,
         "seccion": 4,
         "abr": "s4-p12",
         "texto": "¿Cuáles son los usos más frecuentes que le das a la IAG para tus actividades, en general? ",
@@ -524,7 +524,7 @@ Preguntas = [
                      "Otra"]
     },
     {
-         id: 59,
+         "id": 59,
         "seccion": 5,
         "abr": "s5-p1",
         "texto": "De las siguientes IAG cuáles conoces y utilizas para apoyar la lectura de textos.",
@@ -542,7 +542,7 @@ Preguntas = [
                      "Perplexity"]       
     },
     {
-         id: 60,
+         "id": 60,
         "seccion": 5,
         "abr": "s5-p2",
         "texto": "De las siguientes IAG ¿cuáles conoces y utilizas para apoyar la escritura?",
@@ -555,7 +555,7 @@ Preguntas = [
                      "Otra"]       
     },
     {
-         id: 61,
+         "id": 61,
         "seccion": 5,
         "abr": "s5-p3",
         "texto": "¿De qué manera has aprendido a utilizar la inteligencia artificial?",
@@ -567,7 +567,7 @@ Preguntas = [
                      "No sé utilizar la IAG."]       
     },
     {
-         id: 62,
+         "id": 62,
         "seccion": 5,
         "abr": "s5-p4",
         "texto": "Cuando lees textos académicos te apoyas en la IAG para:",
@@ -580,7 +580,7 @@ Preguntas = [
                      "Otra"]       
     },
     {
-         id: 63,
+         "id": 63,
         "seccion": 5,
         "abr": "s5-p5",
         "texto": "¿En qué otros idiomas, diferentes al español, leíste textos el semestre pasado?",
@@ -593,7 +593,7 @@ Preguntas = [
                      "Otro idioma"]       
     },
     {
-         id: 64,
+         "id": 64,
         "seccion": 5,
         "abr": "s5-p6",
         "texto": "¿En qué otros idiomas, diferentes al español, escribiste textos el semestre pasado?",
@@ -604,6 +604,36 @@ Preguntas = [
                      "Italiano",
                      "Solo leí en español",
                      "Otro idioma"]             
+    },
+    {
+        "id": 65,
+        "seccion": 6,
+        "abr": "s6-p1",
+        "texto": "¿Cuántos libros físicos tienes en tu casa aproximadamente?"
+    },
+    {
+        "id": 66,
+        "seccion": 6,
+        "abr": "s6-p2",
+        "texto": "¿Cuántos libros digitales tienes aproximadamente?"
+    },
+    {
+        "id": 67,
+        "seccion": 6,
+        "abr": "s6-p3",
+        "texto": "¿Qué porcentaje de lo que lees, está en versión digital?"
+    },
+    {
+        "id": 68,
+        "seccion": 6,
+        "abr": "s6-p4",
+        "texto": " ¿Aproximadamente qué cantidad de horas al día empleas para leer?"
+    },
+    {
+        "id": 69,
+        "seccion": 6,
+        "abr": "s6-p5",
+        "texto": "¿Aproximadamente qué cantidad de horas a al día empleas para escribir?"
     }
 ]
 
@@ -631,6 +661,16 @@ def respuestas_aleatorias():
             numero_opciones = len(pregunta["opciones"])
             numero_elegidas = np.random.randint(1, numero_opciones + 1)
             respuesta = np.random.choice(pregunta["opciones"], size=numero_elegidas, replace=False).tolist()
+        elif pregunta["seccion"] == 6:
+            if pregunta["id"]< 68:
+                media = 40
+                dve = 20
+                maximo = 100
+            else:
+                media = 10
+                dve = 5
+                maximo = 24
+            respuesta = int(np.clip(np.random.normal(media, dve), 0, maximo))
         respuestas.append(respuesta)
 
     return pd.DataFrame([respuestas], columns=dar_abrs())
