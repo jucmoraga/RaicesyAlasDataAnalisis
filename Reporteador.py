@@ -25,9 +25,9 @@ def reporte_anexos(muestra):
 
 def reporte_resultados(muestra):
 
-    # resultados_seccion2 = [resultado for resultado in resultados if resultado["seccion"] == 2]
-    # resultados_seccion3 = [resultado for resultado in resultados if resultado["seccion"] == 3]
-    # resultados_seccion4 = [resultado for resultado in resultados if resultado["seccion"] == 4]
+    resultados_seccion2 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 2]
+    resultados_seccion3 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 3]
+    resultados_seccion4 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 4]
     # resultados_seccion5 = [resultado for resultado in resultados if resultado["seccion"] == 5]
     # resultados_seccion6 = [resultado for resultado in resultados if resultado["seccion"] == 6]
 
@@ -39,6 +39,7 @@ def reporte_resultados(muestra):
             .descriptivo {{text-align: justify; width: 70%; margin-left:15%}}
             th{{text-align: center; border: 1px solid black;}}
             td{{text-align: center;border: 1px solid black;}}
+            ul{{text-align: left; width: 70%; margin-left:15%}}
         </style>
     </head>
     <body style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -73,30 +74,41 @@ def reporte_resultados(muestra):
         """
     for info in muestra.informacion_muestral:
         reporte_html += info
+
+    reporte_html += "<h3>Sección 2: Preguntas de única respuesta: Si o No</h3>"
     
-    # for resultado in resultados_seccion2:
-    #     reporte_html += f"""
-    #     <img style="display: block;">{resultado["grafica"]}</img>
-    #     """
+    for resultado in resultados_seccion2:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """
 
-    # reporte_html += """
-    #     <h3>Sección 3: Preguntas de múltiple opción con única respuesta</h3>
-    #     """
+    reporte_html += """
+        <h3>Sección 3: Preguntas de múltiple opción con única respuesta</h3>
+        """
     
-    # for resultado in resultados_seccion3:
-    #     reporte_html += f"""
-    #     <img style="display: block;">{resultado["grafica"]}</img>
-    #     """
+    for resultado in resultados_seccion3:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """
+        if len(resultado["otras respuestas"]) > 0:
+            otras_html = "<ul style='margin-bottom: 80px;'>"
+            for resp in resultado["otras respuestas"]:
+                otras_html += f"<li>{resp}</li>"
+            otras_html += "</ul>"
+            reporte_html += f"""
+            <p>Otras respuestas proporcionadas por los encuestados a la pregunta {resultado["texto"]}</p>
+            {otras_html}
+            """
 
-    # reporte_html += """
-    #     <h3>Sección 4: Preguntas de enumeración de preferencia del 1 al 5</h3>
-    #     <p>Siendo 5 el máximo nivel de preferencia y 1 el mínimo.</p>
-    #     """
+    reporte_html += """
+        <h3>Sección 4: Preguntas de enumeración de preferencia del 1 al 5</h3>
+        <p>Siendo 5 el máximo nivel de preferencia y 1 el mínimo.</p>
+        """
 
-    # for resultado in resultados_seccion4:
-    #     reporte_html += f"""
-    #     <img style="display: block;">{resultado["grafica"]}</img>
-    #     """
+    for resultado in resultados_seccion4:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        """
     
     # reporte_html += """
     #     <h3>Sección 5: Preguntas con opciones multiples de respuesta</h3>

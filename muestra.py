@@ -16,3 +16,12 @@ class Muestra():
         N = 8564          # tamaño de la población
         margen_error = z * math.sqrt(s/n) * math.sqrt((N - n) / (N - 1))
         return margen_error * 100
+    
+    def limpiar(self):
+        self.data.iloc[:,3] = self.data.iloc[:,3].replace(
+            "Cuarto a sexto semestre", 
+            "Cuarto a octavo semestre"
+        )
+        for i in range (0, len(self.data)):
+            if self.data.iloc[i,5] not in ["Masculino", "Femenino"]:
+                self.data.iloc[i,5] = "Otro"
