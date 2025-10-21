@@ -1,9 +1,7 @@
 from resultados import dar_listado_preguntas
-import matplotlib.pyplot as plt
 import pandas as pd
-import base64
-from io import BytesIO
 from scipy.stats import chisquare, chi2
+from graficador import grafica_poblacional, generar_torta, generar_grafico_barras, generar_histograma, generar_barra_horizontal, generar_mapa_de_calor
 
 def procesar_resultados(data, resultados: list):
     encabezados = data.columns.tolist()
@@ -43,153 +41,12 @@ def generar_grafica(resultados, pregunta)->str:
     elif pregunta["seccion"] == 3:
         grafica = generar_barra_horizontal(resultados, pregunta)
     elif pregunta["seccion"] == 4:
-        grafica = generar_grafico_barras(resultados, pregunta)
+        grafica = generar_mapa_de_calor(resultados, pregunta)
     # elif seccion == 5:
     #     grafica = generar_grafico_barras(df, pregunta)
     # elif seccion == 6:
     #     grafica = generar_histograma(df, pregunta)
     return grafica
-
-
-def generar_torta(resultado, pregunta)-> str:
-    opciones = pregunta["opciones"]
-    conteo = resultado.value_counts()
-    conteo = conteo.reindex(opciones, fill_value=0)
-
-    if not conteo.sum() == len(resultado):
-        print("La suma de los conteos no coincide con el tamaño de la muestra, para la pregunta", pregunta["texto"], "-", conteo.sum(), "vs", len(resultado))
-
-    colores = [plt.cm.Set1(1), plt.cm.Set1(4)]
-    fig, ax = plt.subplots(figsize=(10, 6))
-    wedges, texts, autotexts = ax.pie(
-            conteo,
-            labels=conteo.index,
-            autopct='%1.1f%%',
-            startangle=0,
-            colors=colores
-            )
-
-    for i, (wedge, autotext) in enumerate(zip(wedges, autotexts)):
-        # Obtener la posición del texto del porcentaje
-        x, y = autotext.get_position()
-        # Agregar el conteo real debajo del porcentaje
-        ax.annotate(f'{conteo.iloc[i]}', 
-                   xy=(x, y-0.15), 
-                   ha='center', 
-                   va='center', 
-                   fontsize=10)   
-
-    ax.set_title(pregunta["texto"],wrap=True, fontsize=11)
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
-
-def generar_barra_horizontal(resultado, pregunta)->str:
-    opciones = pregunta["opciones"]
-
-    resultado = resultado.copy()
-    mascara = ~resultado.isin(opciones)
-    resultado.loc[mascara] = opciones[-1]
-    
-    conteos = resultado.value_counts()
-    conteos = conteos.reindex(opciones, fill_value=0)
-
-    if not conteos.sum() == len(resultado):
-        print("La suma de los conteos no coincide con el tamaño de la muestra, para la pregunta", pregunta["texto"], "-", conteos.sum(), "vs", len(resultado))
-
-    fig, ax = plt.subplots(figsize=(10, 4))
-    suma = 0
-    for opcion in opciones:
-        conteo = conteos[opcion]
-        if conteo == 0:
-            continue
-        ax.barh( 0, 
-                conteo, 
-                left=suma, 
-                label=opcion,
-                height=1,
-                color = plt.cm.Paired(opciones.index(opcion))
-                )
-        ax.text(x=suma + conteos[opcion] / 2,
-                y = 0,
-                s = str(conteo) + (f" ({(conteo/len(resultado)*100):.1f}%)" if conteo/len(resultado) > 0.1 else ""),
-                va= 'center',
-                ha = 'center')
-        suma += conteos[opcion]
-    
-    ax.set_ylim(-1, 1)
-    ax.set_yticks([])
-    ax.set_title(pregunta["texto"], wrap=True, fontsize=11)
-    ax.legend(loc = 'upper center',
-              bbox_to_anchor=(0.5, -0.15))
-    fig.subplots_adjust(bottom=0.5) 
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
-
-def generar_grafico_barras(resultados, pregunta)-> str:
-    fig, ax = plt.subplots(figsize=(10, 6))
-    opciones = pregunta["opciones"]
-    conteos = []
-
-    if pregunta["seccion"] == 4:
-        for opcion in opciones:
-            conteo = int((resultados == opcion).sum())
-            conteos.append(conteo)
-    elif pregunta["seccion"] == 5:
-        for opcion in opciones:
-            conteo = 0
-            for resultado in resultados:
-                if isinstance(resultado, list) and opcion in resultado:
-                    conteo += 1
-            conteos.append(conteo)
-
-
-
-    for i, opcion in enumerate(opciones):
-        conteo = conteos[i]
-        if conteo > 0:    
-            ax.bar(opcion, 
-                   conteo, 
-                   color=plt.cm.tab20.colors[i], label=opcion)
-            ax.text(x=opcion,
-                    y = conteo, 
-                    s=conteo, 
-                    va='bottom', 
-                    ha='center', 
-                    fontsize=9)
-    
-    ax.set_title(pregunta["texto"], wrap=True, fontsize=11)
-    ax.set_xticks([])
-    maximo = max(conteos)
-    ax.set_ylim(0, maximo + 40)
-    ax.legend(loc = 'upper center',
-              bbox_to_anchor=(0.5, -0.15),
-              ncol=2) 
-    fig.subplots_adjust(bottom=0.4)  
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
-
-def generar_histograma(df, pregunta)-> str:
-    fig, ax = plt.subplots(figsize=(10, 6))
-    resultados = df[pregunta["abr"]]
-    ax.hist(resultados, bins=20, color='blue', alpha=0.7)
-    ax.set_title(pregunta["texto"], wrap=True, fontsize=11)
-    ax.set_xlabel('Valores')
-    ax.set_ylabel('Frecuencia')
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
-
-def codificar_imagen(img: plt.Figure) -> str:
-    buffer = BytesIO()
-    img.savefig(buffer, format='png')
-    buffer.seek(0)
-    imagen_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-    img_html = f'<img src="data:image/png;base64,{imagen_base64}"/>'
-    return img_html
-
 
 opciones_facultades = [
     "Facultad de Bellas Artes",
@@ -229,36 +86,6 @@ def datos_poblacionales(muestra):
     muestra.informacion_poblacional.append(grafica_semestre)
     muestra.informacion_poblacional.append(grafica_genero)
 
-def grafica_poblacional(opciones, conteos, titulo, esperados=None)-> str:
-    fig, ax = plt.subplots(figsize=(10, 6))
-
-    for i, opcion in enumerate(opciones):
-        conteo = conteos[i]
-        if conteo > 0:    
-            ax.bar(opcion, 
-                   conteo, 
-                   color=plt.cm.tab20.colors[i], label=opcion)
-            ax.text(x=opcion,
-                    y = conteo, 
-                    s=conteo, 
-                    va='bottom', 
-                    ha='center', 
-                    fontsize=9)
-            x_coord = i
-            if esperados:
-                ax.hlines(y=esperados[i], xmin=x_coord - 0.3, xmax=x_coord + 0.3, colors='red', linewidth=2)
-
-    ax.set_title(titulo, wrap=True, fontsize=11)
-    ax.set_xticks([])
-    maximo = max(conteos)
-    ax.set_ylim(0, maximo + max(conteos)*0.1)
-    ax.legend(loc = 'upper center',
-              bbox_to_anchor=(0.5, -0.15),
-              ncol=2) 
-    fig.subplots_adjust(bottom=0.4)  
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
 
 def datos_muestrales(muestra):
     facultades = muestra.data.iloc[:,2]

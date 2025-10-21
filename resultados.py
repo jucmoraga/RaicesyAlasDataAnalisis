@@ -205,24 +205,19 @@ Preguntas = [
     },
     {
         "seccion": 4,
-        "texto": "Textos narrativos (literatura, crónica, ensayo literario, novela, libro-álbum…).",
-        "opciones": [1,2,3,4,5,"Sin preferencia"],
-        "Enunciado": "De los siguientes géneros textuales enumera de 1 a 5 según la frecuencia de lectura"
-    },
-    # {
-    #     "seccion": 4,
-    #     "texto": "De los siguientes géneros textuales enumera de 1 a 5 según la frecuencia de lectura",
-    #     "opciones": ["Textos narrativos (literatura, crónica, ensayo literario, novela, libro-álbum…). ",
-    #                  "Textos periodísticos (noticias, artículos de opinión, crónicas). ",
-    #                  "Textos técnicos e instruccionales (que enseñan a hacer cosas). ",
-    #                  "Textos jurídicos y/o administrativos (ejercicio de la ciudadanía y los derechos)",
-    #                  "Textos dramatúrgicos (teatro). ",
-    #                  "Textos poéticos (poemas, haikus, caligramas).",
-    #                  "Textos epistolares (cartas, correos, mensajes de textos). ",
-    #                  "Textos (auto)biográficos o íntimos (Diarios, Memorias). ",
-    #                  "Textos propios de tu área.",
-    #                  "Otros"]
-    # },
+        "texto": "De los siguientes géneros textuales enumera de 1 a 5 según la frecuencia de lectura:",
+        "opciones": ["Textos narrativos (literatura, crónica, ensayo literario, novela, libro-álbum…).",
+                     "Textos periodísticos (noticias, artículos de opinión, crónicas).",
+                     "Textos técnicos e instruccionales (que enseñan a hacer cosas).",
+                     "Textos jurídicos y/o administrativos (ejercicio de la ciudadanía y los derechos)",
+                     "Textos dramatúrgicos (teatro).",
+                     "Textos poéticos (poemas, haikus, caligramas).",
+                     "Textos epistolares (cartas, correos, mensajes de textos).",
+                     "Textos (auto)biográficos o íntimos (Diarios, Memorias).",
+                     "Textos propios de tu área.",
+                     "Otro"
+                     ]
+    }
     # {
     #     "id": 48,
     #     "seccion": 4,
