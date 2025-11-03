@@ -15,13 +15,21 @@ def procesar_resultados(data, resultados: list):
         resultado = {
             "texto": pregunta["texto"],
             "grafica": generar_grafica(Resultados_Pregunta, pregunta),
-            "otras respuestas": dar_otras_respuestas(Resultados_Pregunta, pregunta["opciones"]),
+            "otras respuestas": dar_otras_respuestas(Resultados_Pregunta, pregunta["opciones"], pregunta["seccion"]),
             "seccion": pregunta["seccion"],
         }
         resultados.append(resultado)
 
-def dar_otras_respuestas(resultado, opciones)-> list:
+def dar_otras_respuestas(resultado, opciones, seccion)-> list:
     otras = []
+    if seccion == 5:
+        for respuesta in resultado:
+            seleccionadas = respuesta.split(";")
+            for seleccionada in seleccionadas:
+                if seleccionada not in opciones and seleccionada not in otras:
+                    otras.append(seleccionada)
+        return otras
+
     for respuesta in resultado:
         if not respuesta in opciones and respuesta not in otras:
             otras.append(respuesta)
@@ -42,8 +50,8 @@ def generar_grafica(resultados, pregunta)->str:
         grafica = generar_barra_horizontal(resultados, pregunta)
     elif pregunta["seccion"] == 4:
         grafica = generar_mapa_de_calor(resultados, pregunta)
-    # elif seccion == 5:
-    #     grafica = generar_grafico_barras(df, pregunta)
+    elif pregunta["seccion"] == 5:
+        grafica = generar_grafico_barras(resultados, pregunta)
     # elif seccion == 6:
     #     grafica = generar_histograma(df, pregunta)
     return grafica

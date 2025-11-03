@@ -28,7 +28,7 @@ def reporte_resultados(muestra):
     resultados_seccion2 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 2]
     resultados_seccion3 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 3]
     resultados_seccion4 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 4]
-    # resultados_seccion5 = [resultado for resultado in resultados if resultado["seccion"] == 5]
+    resultados_seccion5 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 5]
     # resultados_seccion6 = [resultado for resultado in resultados if resultado["seccion"] == 6]
 
     reporte_html = f"""
@@ -106,18 +106,38 @@ def reporte_resultados(muestra):
         """
 
     for resultado in resultados_seccion4:
+        if not resultado["grafica"] == "":
+            reporte_html += f"""
+            <img style="display: block;">{resultado["grafica"]}</img>
+            """
+        else:
+            otras_html = "<ul style='margin-bottom: 80px;'>"
+            for resp in resultado["otras respuestas"]:
+                otras_html += f"<li>{resp}</li>"
+            otras_html += "</ul>"
+            reporte_html += f"""
+            <p>Otras respuestas proporcionadas por los encuestados a la pregunta {resultado["texto"]}</p>
+            {otras_html}
+            """
+    
+    reporte_html += """
+        <h3>Sección 5: Preguntas con opciones multiples de respuesta</h3>
+        """
+
+    for resultado in resultados_seccion5:
         reporte_html += f"""
         <img style="display: block;">{resultado["grafica"]}</img>
-        """
-    
-    # reporte_html += """
-    #     <h3>Sección 5: Preguntas con opciones multiples de respuesta</h3>
-    #     """
+        """  
 
-    # for resultado in resultados_seccion5:
-    #     reporte_html += f"""
-    #     <img style="display: block;">{resultado["grafica"]}</img>
-    #     """  
+        if len(resultado["otras respuestas"]) > 0:
+            otras_html = "<ul style='margin-bottom: 80px;'>"
+            for resp in resultado["otras respuestas"]:
+                otras_html += f"<li>{resp}</li>"
+            otras_html += "</ul>"
+            reporte_html += f"""
+            <p>Otras respuestas proporcionadas por los encuestados a la pregunta {resultado["texto"]}</p>
+            {otras_html}
+            """
 
     # reporte_html += """
     #     <h3>Sección 6: Preguntas abiertas</h3>

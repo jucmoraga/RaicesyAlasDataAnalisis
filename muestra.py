@@ -4,7 +4,7 @@ from resultados import Preguntas
 
 class Muestra():
     def __init__(self):
-        self.data= pd.read_csv('respuestas/resultados_041025.txt', delimiter=',')
+        self.data= pd.read_csv('respuestas/resultados_281025.csv', delimiter=',')
         self.resultados = []
         self.informacion_poblacional = []
         self.informacion_muestral = []
@@ -33,6 +33,8 @@ class Muestra():
         columnas = self.data.columns.tolist()
         for pregunta in preguntas_seccion_4:
             opciones = pregunta["opciones"]
+            if opciones is None or len(opciones) == 0:
+                continue
             columnas_consolidar = []
             for columna in columnas:
                 if pregunta["texto"] in columna:

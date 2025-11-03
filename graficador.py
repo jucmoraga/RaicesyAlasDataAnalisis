@@ -79,51 +79,12 @@ def generar_barra_horizontal(resultado, pregunta)->str:
     plt.close(fig)
     return imagen_codificada
 
-def generar_barras_acumuladas(resultado, pregunta)-> str:
-    conteos = []
-    opciones = pregunta["opciones"]
-    fig, ax = plt.subplots(figsize=(10, 6))
-
-    conteo_no_selecciona = int((~resultado.isin(pregunta["opciones"])).sum())
-    conteos.append(conteo_no_selecciona)
-
-    for opcion in opciones:
-        conteo = int((resultado == opcion).sum())
-        conteos.append(conteo)
-
-    opciones = ["Ninguna", "I", "II", "III", "IV", "V"]
-
-    acumulado = 0
-    for i, opcion in enumerate(opciones):
-        conteo = conteos[i]
-        if conteo > 0:    
-            ax.bar(opcion, 
-                   conteo, 
-                   color= "#8d0707", 
-                   label=opcion,
-                   bottom=acumulado)
-            ax.text(x=opcion,
-                    y = acumulado + (conteo/3), 
-                    s=str(conteo) + (f" ({(conteo/len(resultado)*100):.1f}%)"), 
-                    va='bottom', 
-                    ha='center', 
-                    fontsize=9,
-                    color = 'white',
-                    fontweight = 'bold')
-        acumulado += conteo
-
-    ax.set_title("Opción " + pregunta["texto"] + " De la categoría " + pregunta["categoría"], wrap=True, fontsize=11)
-    ax.tick_params(axis='x')
-    ax.set_xlabel('Nivel de Preferencia')
-    ax.set_ylim(0, acumulado + 10)
-    fig.subplots_adjust(bottom=0.4)  
-    imagen_codificada = codificar_imagen(fig)
-    plt.close(fig)
-    return imagen_codificada
-
 
 def generar_mapa_de_calor(resultado, pregunta)-> str:
     opciones = pregunta["opciones"]
+
+    if opciones is None or len(opciones) == 0:
+        return ""
 
     data = [[0]*5 for _ in range(len(opciones))]
 
@@ -151,7 +112,11 @@ def generar_mapa_de_calor(resultado, pregunta)-> str:
     
     ylabels = []
     for opcion in opciones:
-        opcion_recortada = opcion.split('(')[0].strip()
+        if len(opcion.split('('))<=2:
+            opcion_recortada = opcion.split('(')[0].strip()
+        else:
+            opcion_recortada = opcion.split('(')[0].strip() + " (" + opcion.split('(')[1].strip()
+        
         ylabels.append(opcion_recortada)
 
 
@@ -184,7 +149,7 @@ def generar_grafico_barras(resultados, pregunta)-> str:
     for opcion in opciones:
         conteo = 0
         for resultado in resultados:
-            if isinstance(resultado, list) and opcion in resultado:
+            if opcion in resultado:
                 conteo += 1
         conteos.append(conteo)
 
