@@ -1,7 +1,7 @@
 from resultados import dar_listado_preguntas
 import pandas as pd
 from scipy.stats import chisquare, chi2
-from graficador import grafica_poblacional, generar_torta, generar_grafico_barras, generar_histograma, generar_barra_horizontal, generar_mapa_de_calor
+from graficador import grafica_poblacional, generar_torta, generar_grafico_barras, generar_histograma, generar_barra_horizontal, generar_mapa_de_calor, barras_con_calificacion
 
 def procesar_resultados(data, resultados: list):
     encabezados = data.columns.tolist()
@@ -14,6 +14,7 @@ def procesar_resultados(data, resultados: list):
         Resultados_Pregunta = data.iloc[:, indice]
         resultado = {
             "texto": pregunta["texto"],
+            "grafica presentacion": generar_grafica_presentacion(Resultados_Pregunta, pregunta),
             "grafica": generar_grafica(Resultados_Pregunta, pregunta),
             "otras respuestas": dar_otras_respuestas(Resultados_Pregunta, pregunta["opciones"], pregunta["seccion"]),
             "seccion": pregunta["seccion"],
@@ -24,10 +25,22 @@ def dar_otras_respuestas(resultado, opciones, seccion)-> list:
     otras = []
     if seccion == 5:
         for respuesta in resultado:
-            seleccionadas = respuesta.split(";")
-            for seleccionada in seleccionadas:
-                if seleccionada not in opciones and seleccionada not in otras:
-                    otras.append(seleccionada)
+            if not pd.isna(respuesta):
+                seleccionadas = respuesta.split(";")
+                for seleccionada in seleccionadas:
+                    if seleccionada not in opciones and seleccionada not in otras:
+                        otras.append(seleccionada)
+        return otras
+
+    if seccion ==6:
+        for respuesta in resultado:
+            #si no es numerico ni na
+            try:
+                float(respuesta)
+            except:
+                if not pd.isna(respuesta):
+                    otras.append(respuesta)
+                continue
         return otras
 
     for respuesta in resultado:
@@ -52,9 +65,16 @@ def generar_grafica(resultados, pregunta)->str:
         grafica = generar_mapa_de_calor(resultados, pregunta)
     elif pregunta["seccion"] == 5:
         grafica = generar_grafico_barras(resultados, pregunta)
-    # elif seccion == 6:
-    #     grafica = generar_histograma(df, pregunta)
+    elif pregunta["seccion"] == 6:
+        if pregunta["texto"]=="2. En el último año ¿Qué porcentaje (de 1 a 100) de lo que lees, está en versión digital?":
+            grafica = generar_histograma(resultados, pregunta)
     return grafica
+
+def generar_grafica_presentacion(resultados, pregunta)->str:
+    if pregunta["seccion"] == 4:
+        return barras_con_calificacion(resultados, pregunta)
+    else:
+        return ""
 
 opciones_facultades = [
     "Facultad de Bellas Artes",
@@ -112,21 +132,6 @@ def datos_muestrales(muestra):
     muestra.informacion_muestral.append(grafica_facultades)
     muestra.informacion_muestral.append(tabla_facultades)
 
-    semestres = muestra.data.iloc[:,3]
-    conteos_semestre = semestres.value_counts().reindex(opciones_semestre, fill_value=0).tolist()
-    if not sum(conteos_semestre) == len(muestra.data):
-        print("La suma de los conteos de semestre no coincide con el tamaño de la muestra.")
-    titulo_semestre = "Distribución de la muestra según semestre académico"
-    esperados_semestre = [round(len(muestra.data) * (3117/8564)),
-                          round(len(muestra.data) * (3339/8564)),
-                          round(len(muestra.data) * (2108/8564))]
-
-    grafica_semestre = grafica_poblacional(opciones_semestre, conteos_semestre, titulo_semestre, esperados_semestre)
-    tabla_semestre = tabla_datos_muestrales(opciones_semestre, conteos_semestre, esperados_semestre)
-
-    muestra.informacion_muestral.append(grafica_semestre)
-    muestra.informacion_muestral.append(tabla_semestre)
-
     generos = muestra.data.iloc[:,5]
     conteos_genero = generos.value_counts().reindex(opciones_genero, fill_value=0).tolist()
     if not sum(conteos_genero) == len(muestra.data):
@@ -140,6 +145,21 @@ def datos_muestrales(muestra):
 
     muestra.informacion_muestral.append(grafica_genero)
     muestra.informacion_muestral.append(tabla_genero)
+
+    semestres = muestra.data.iloc[:,3]
+    conteos_semestre = semestres.value_counts().reindex(opciones_semestre, fill_value=0).tolist()
+    if not sum(conteos_semestre) == len(muestra.data):
+        print("La suma de los conteos de semestre no coincide con el tamaño de la muestra.")
+    titulo_semestre = "Distribución de la muestra según semestre académico"
+    esperados_semestre = [round(len(muestra.data) * (3117/8564)),
+                          round(len(muestra.data) * (3339/8564)),
+                          round(len(muestra.data) * (2108/8564))]
+
+    grafica_semestre = grafica_poblacional(opciones_semestre, conteos_semestre, titulo_semestre, esperados_semestre)
+    tabla_semestre = tabla_datos_muestrales(opciones_semestre, conteos_semestre, esperados_semestre)
+
+    muestra.informacion_muestral.append(grafica_semestre)
+    #muestra.informacion_muestral.append(tabla_semestre)
 
 def tabla_datos_muestrales(opciones, conteo, esperados)-> str:
     if not sum(conteo) == sum(esperados):

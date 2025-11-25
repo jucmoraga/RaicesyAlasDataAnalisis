@@ -509,36 +509,16 @@ Preguntas = [
                      "Ninguna",
                      "Otro:"]       
     },
-    # {
-    #     "id": 65,
-    #     "seccion": 6,
-    #     "abr": "s6-p1",
-    #     "texto": "¿Cuántos libros físicos tienes en tu casa aproximadamente?"
-    # },
-    # {
-    #     "id": 66,
-    #     "seccion": 6,
-    #     "abr": "s6-p2",
-    #     "texto": "¿Cuántos libros digitales tienes aproximadamente?"
-    # },
-    # {
-    #     "id": 67,
-    #     "seccion": 6,
-    #     "abr": "s6-p3",
-    #     "texto": "¿Qué porcentaje de lo que lees, está en versión digital?"
-    # },
-    # {
-    #     "id": 68,
-    #     "seccion": 6,
-    #     "abr": "s6-p4",
-    #     "texto": " ¿Aproximadamente qué cantidad de horas al día empleas para leer?"
-    # },
-    # {
-    #     "id": 69,
-    #     "seccion": 6,
-    #     "abr": "s6-p5",
-    #     "texto": "¿Aproximadamente qué cantidad de horas a al día empleas para escribir?"
-    # }
+    {
+        "seccion": 6,
+        "texto": "1. En el último año ¿qué autor(es) o libro(s) has leído a partir de tus propios intereses?",
+        "opciones": []
+    },
+    {
+        "seccion": 6,
+        "texto": "2. En el último año ¿Qué porcentaje (de 1 a 100) de lo que lees, está en versión digital?",
+        "opciones": []
+    }
 ]
 
 def dar_abrs():

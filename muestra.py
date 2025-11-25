@@ -4,7 +4,7 @@ from resultados import Preguntas
 
 class Muestra():
     def __init__(self):
-        self.data= pd.read_csv('respuestas/resultados_281025.csv', delimiter=',')
+        self.data= pd.read_csv('respuestas/resultados_231125.csv', delimiter=',')
         self.resultados = []
         self.informacion_poblacional = []
         self.informacion_muestral = []
@@ -27,6 +27,8 @@ class Muestra():
             if self.data.iloc[i,5] not in ["Masculino", "Femenino"]:
                 self.data.iloc[i,5] = "Otro"
         self.consolidar_seccion_4()
+        self.ajustar_seccion_5()
+
     
     def consolidar_seccion_4(self):
         preguntas_seccion_4 = [p for p in Preguntas if p["seccion"] == 4]
@@ -52,3 +54,20 @@ class Muestra():
             self.data[nombre_nueva_columna] = nueva_columna
             self.data.drop(columns=[columna for _, columna in columnas_consolidar], inplace=True)
 
+    def ajustar_seccion_5(self):
+        data = self.data["2. En el último año ¿Qué porcentaje (de 1 a 100) de lo que lees, está en versión digital? "]
+        nueva_columna = []
+        for valor in data:
+            valor_string = str(valor).strip()
+            if "%" in valor_string:
+                valor_string = valor_string.replace("%", "").strip()
+            try:
+                valor_num = float(valor_string)
+                if 1 <= valor_num <= 100:
+                    nueva_columna.append(valor_num)
+                else:
+                    nueva_columna.append(None)
+            except ValueError:
+                nueva_columna.append(valor_string)
+
+        self.data["2. En el último año ¿Qué porcentaje (de 1 a 100) de lo que lees, está en versión digital? "] = nueva_columna

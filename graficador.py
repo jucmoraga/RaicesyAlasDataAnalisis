@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 from textwrap import fill
+import pandas as pd
 
 def generar_torta(resultado, pregunta)-> str:
     opciones = pregunta["opciones"]
@@ -149,8 +150,9 @@ def generar_grafico_barras(resultados, pregunta)-> str:
     for opcion in opciones:
         conteo = 0
         for resultado in resultados:
-            if opcion in resultado:
-                conteo += 1
+            if not pd.isna(resultado):
+                if opcion in resultado:
+                    conteo += 1
         conteos.append(conteo)
 
     for i, opcion in enumerate(opciones):
@@ -178,13 +180,100 @@ def generar_grafico_barras(resultados, pregunta)-> str:
     plt.close(fig)
     return imagen_codificada
 
-def generar_histograma(df, pregunta)-> str:
+def generar_histograma(resultados, pregunta)-> str:
     fig, ax = plt.subplots(figsize=(10, 6))
-    resultados = df[pregunta["abr"]]
-    ax.hist(resultados, bins=20, color='blue', alpha=0.7)
+    resultados_numericos = []
+    for resultado in resultados:
+        try:
+            valor = float(resultado)
+            resultados_numericos.append(valor)
+        except:
+            continue
+    ax.hist(resultados_numericos, bins=5, color='blue', alpha=0.7)
     ax.set_title(pregunta["texto"], wrap=True, fontsize=11)
     ax.set_xlabel('Valores')
     ax.set_ylabel('Frecuencia')
+    imagen_codificada = codificar_imagen(fig)
+    plt.close(fig)
+    return imagen_codificada
+
+def barras_con_calificacion(resultados, pregunta)-> str:
+    opciones = pregunta["opciones"]
+
+    # hacer la figura más ancha si hay muchas opciones para evitar solapamiento
+    ancho_fig = max(10, len(opciones) * 1.2)
+    fig, ax = plt.subplots(figsize=(ancho_fig, 6))
+
+    if opciones is None or len(opciones) == 0:
+        return ""
+
+    conteos = []
+
+    for opcion in opciones:
+        conteo_opcion = 0
+        sumatoria_calificacion = 0.0
+        for respuesta in resultados:
+            # intentar acceder a la respuesta de forma segura (Series, dict, etc.)
+            try:
+                valor = respuesta[opcion]
+            except Exception:
+                try:
+                    # si es dict-like
+                    valor = respuesta.get(opcion)
+                except Exception:
+                    valor = None
+
+            if valor is None or pd.isna(valor):
+                continue
+
+            try:
+                num = float(valor)
+            except Exception:
+                # si no se puede convertir a número, ignorar ese valor
+                continue
+
+            conteo_opcion += 1
+            sumatoria_calificacion += num
+
+        promedio_calificacion = (sumatoria_calificacion / conteo_opcion) if conteo_opcion > 0 else 0.0
+        conteos.append([conteo_opcion, promedio_calificacion])
+
+    for i, opcion in enumerate(opciones):
+        conteo = conteos[i][0]
+        calificacion_media = conteos[i][1]
+        if conteo > 0:
+            # barras más angostas para dejar espacio lateral
+            ax.bar(opcion,
+                   conteo,
+                   width=0.5,
+                   color=plt.cm.tab20.colors[i],
+                   label=opcion)
+
+            # texto reducido y envuelto para evitar solapamiento
+            texto = "Total: " + str(conteo) + "\n" + f"Preferencia: {calificacion_media:.1f}"
+            texto_envuelto = fill(texto, width=20)
+            ax.text(x=opcion,
+                    y=conteo,
+                    s=texto_envuelto,
+                    va='bottom',
+                    ha='center',
+                    fontsize=8)
+    
+    ax.set_title(pregunta["texto"], wrap=True, fontsize=11)
+    ax.set_xticks([])
+    valores_conteo = [c[0] for c in conteos]
+    if len(valores_conteo) == 0:
+        maximo = 0
+    else:
+        maximo = max(valores_conteo)
+
+    ax.set_ylim(0, maximo + max(10, int(maximo * 0.1)))
+    # leyenda con fuente más pequeña y columnas dinámicas para no invadir la figura
+    ncol_leyenda = min(3, max(1, len(opciones)//4))
+    ax.legend(loc='upper center',
+              bbox_to_anchor=(0.5, -0.15),
+              ncol=ncol_leyenda, fontsize=8)
+    fig.subplots_adjust(bottom=0.4)  
     imagen_codificada = codificar_imagen(fig)
     plt.close(fig)
     return imagen_codificada

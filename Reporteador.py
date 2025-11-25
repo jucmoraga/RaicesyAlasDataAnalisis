@@ -29,7 +29,7 @@ def reporte_resultados(muestra):
     resultados_seccion3 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 3]
     resultados_seccion4 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 4]
     resultados_seccion5 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 5]
-    # resultados_seccion6 = [resultado for resultado in resultados if resultado["seccion"] == 6]
+    resultados_seccion6 = [resultado for resultado in muestra.resultados if resultado["seccion"] == 6]
 
     reporte_html = f"""
     <html>
@@ -47,7 +47,7 @@ def reporte_resultados(muestra):
         <h1 style='color: MidnightBlue;'>Universidad Pedagógica Nacional</h1>
         <h2>Proyecto Raices y Alas</h2>
         <h2>Reporte de resultados</h2>
-        <p>Con encuestas realizadas hasta el 4 de octubre del 2025</p>
+        <p>Con encuestas realizadas hasta el 23 de noviembre del 2025</p>
         <h3>Sección 1: Perfil poblacional y muestral</h3>
         <h4>Descripción de la población a estudiar</h4>
         <p class="descriptivo">
@@ -74,6 +74,24 @@ def reporte_resultados(muestra):
         """
     for info in muestra.informacion_muestral:
         reporte_html += info
+
+    reporte_html += """
+    <p class="descriptivo">
+        En el caso de la distribución de la muestra por semestre académico cursado, si bien se buscó al igual que con el género y 
+        la facultad de estudios que la muestra presentara "bondad de ajuste" con respecto a la información de registro de la universidad, no 
+        fue posible obtener un grupo completamente ajustado a la información poblacional, debido a la imposibilidad de tomar más encuestados
+        en el nivel educativo "noveno semestre o superior". 
+    </p>    
+    <p class="descriptivo">
+        Lo anterior se debe a cuatro razones: primero, una posible sobreestimación del tamaño de la población por parte del 
+        la información estadística de registro de la Universidad, que puede incluir estudiantes inactivos o retirados. Segundo, 
+        la dificultad de contactar estudiantes de niveles académicos superiores, teniendo en cuenta que muchos de ellos se 
+        encuentran en prácticas profesionales por lo que no están disponibles en la Universidad para la aplicación de la encuesta. 
+        Tercero, una diferencia de medición con respecto a la estadistica de registro (que mide la antiguedad del estudiante por la fecha de ingreso) 
+        sin tener en cuenta pausas en la vida académica del estudiante. Y cuarto, un numero importante de programas académicos que
+        tienen únicamente 8 semestres.
+    </p>    
+    """
 
     reporte_html += "<h3>Sección 2: Preguntas de única respuesta: Si o No</h3>"
     
@@ -106,6 +124,10 @@ def reporte_resultados(muestra):
         """
 
     for resultado in resultados_seccion4:
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica presentacion"]}</img>
+        """
+
         if not resultado["grafica"] == "":
             reporte_html += f"""
             <img style="display: block;">{resultado["grafica"]}</img>
@@ -139,14 +161,20 @@ def reporte_resultados(muestra):
             {otras_html}
             """
 
-    # reporte_html += """
-    #     <h3>Sección 6: Preguntas abiertas</h3>
-    #     """
+    reporte_html += """
+        <h3>Sección 6: Preguntas abiertas</h3>
+        <h4>1. En el último año ¿qué autor(es) o libro(s) has leído a partir de tus propios intereses?</h4>
+        """
 
-    # for resultado in resultados_seccion6:
-    #     reporte_html += f"""
-    #     <img style="display: block;">{resultado["grafica"]}</img>
-    #     """      
+    for resultado in resultados_seccion6:
+        otros_html = "<ul style='margin-bottom: 80px;'>"
+        for resp in resultado["otras respuestas"]:
+            otros_html += f"<li>{resp}</li>"
+        otros_html += "</ul>"
+        reporte_html += f"""
+        <img style="display: block;">{resultado["grafica"]}</img>
+        {otros_html}
+        """      
 
     reporte_html += """
         </div>
